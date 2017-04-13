@@ -1,0 +1,263 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,body {
+    width: 100%;
+    height: 100%;
+    background-color: #fffcd6;
+    overflow: scroll;
+}
+
+.clearfix {
+    zoom: 1;
+}
+/*a,abbr,acronym,address,applet,big,blockquote,body,caption,cite,code,dd,del,dfn,div,dl,dt,em,fieldset,form,h1,h2,h3,h4,h5,h6,html,iframe,img,ins,kbd,label,legend,li,object,ol,p,pre,q,s,samp,small,span,strike,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,tt,ul,var{padding:0;margin:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-family:inherit;font-size:100%;vertical-align:baseline}body{line-height:1}ol,ul{list-style:none}table{border-collapse:separate;border-spacing:0;vertical-align:middle}caption,td,th{text-align:left;font-weight:400;vertical-align:middle}a img{border:none}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block;padding:0;margin:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-family:inherit;font-size:100%;vertical-align:baseline}audio,canvas,video{display:inline-block}[hidden],audio:not([controls]){display:none}*/
+/*body {*/
+    /*font: 14px / 1.5 "Microsoft Yahei", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;*/
+    /*background: #f5f5f5;*/
+/*}*/
+.clearfix:after{
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+.wrapper{
+    width: 1100px;
+    margin: 0 auto;
+}
+/*@font-face {font-family: "iconfont";*/
+    /*src: url('/public/fonts/iconfont.eot'); !* IE9*!*/
+    /*src: url('/public/fonts/iconfont.eot?#iefix') format('embedded-opentype'), !* IE6-IE8 *!*/
+    /*url('/public/fonts/iconfont.woff') format('woff'), !* chrome, firefox *!*/
+    /*url('/public/fonts/iconfont.ttf') format('truetype'), !* chrome, firefox, opera, Safari, Android, iOS 4.2+*!*/
+    /*url('/public/fonts/iconfont.svg#iconfont') format('svg'); !* iOS 4.1- *!*/
+/*}*/
+
+/*.iconfont {*/
+    /*font-family:"iconfont" !important;*/
+    /*font-size:16px;*/
+    /*font-style:normal;*/
+    /*-webkit-font-smoothing: antialiased;*/
+    /*-webkit-text-stroke-width: 0.2px;*/
+    /*-moz-osx-font-smoothing: grayscale;*/
+/*}*/
+/*.icon-5wodeicon01:before { content: "\e621"; }*/
+/*.icon-3xiaohuashangchengicon01:before { content: "\e61f"; }*/
+/*.icon-2shouyeicon01:before { content: "\e61e"; }*/
+/*.icon-14shoucangicon01:before { content: "\e62a"; }*/
+/*.icon-13shangpinxiangqingshunfengbaoyouicon01:before { content: "\e628"; }*/
+/*.icon-12fanhuiicon01:before { content: "\e627"; }*/
+/*.icon-14kefuicon01:before { content: "\e60d"; }*/
+/*.icon-23shezhiicon01:before { content: "\e617"; }*/
+/*.icon-19wodeyinxingqiaicon01:before { content: "\e613"; }*/
+/*.icon-16quanbudingdanicon01:before { content: "\e610"; }*/
+/*.icon-gouwuche02:before { content: "\e603"; }*/
+/*.icon-icon09:before { content: "\e60e"; }*/
+/*.icon-icon10:before { content: "\e60f"; }*/
+/*.icon-share:before { content: "\e612"; }*/
+/*.icon-xin:before { content: "\e713"; }*/
+/*.icon-xin1:before { content: "\e60d"; }*/
+/*.icon-qitiantuihuo:before { content: "\e606"; }*/
+/*.icon-qitiantuihuan:before { content: "\f0018"; }*/
+/*.icon-sousuo:before { content: "\e60b"; }*/
+
+
+@font-face {font-family: 'iconfont2';
+    src: url('./fonts/iconfont2.eot'); /* IE9*/
+    src: url('./fonts/iconfont2.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('./fonts/iconfont2.woff') format('woff'), /* chrome、firefox */
+    url('./fonts/iconfont2.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('./fonts/iconfont2.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont2{
+    font-family:"iconfont2" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+
+.loader {
+    position: relative;
+    margin: 0 auto;
+    width: 4px;
+    height: 20px;
+    background: #ff6700;
+    overflow: visible;
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1)
+}
+.loader,.loader:before,.loader:after {
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation-name: loader;
+    animation-name: loader;
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate-reverse;
+    animation-direction: alternate-reverse
+}
+
+.loader:before,.loader:after {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 4px;
+    height: 20px;
+    content: '';
+    background: #ff6700
+}
+
+.loader:before {
+    margin: -10px 0 0 -10px;
+    -webkit-animation-delay: .25s;
+    animation-delay: .25s;
+    -webkit-transform: scale(1, 0.3);
+    -ms-transform: scale(1, 0.3);
+    transform: scale(1, 0.3)
+}
+
+.loader:after {
+    margin: -10px 0 0 6px;
+    -webkit-animation-delay: .5s;
+    animation-delay: .5s;
+    -webkit-transform: scale(1, 0.5);
+    -ms-transform: scale(1, 0.5);
+    transform: scale(1, 0.5)
+}
+.loader-white,.loader-white:before,.loader-white:after {
+    background: #fff
+}
+
+.loader-gray,.loader-gray:before,.loader-gray:after {
+    background: rgba(0,0,0,0.3);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4c000000", endColorstr="#4c000000")\9
+}
+
+@-webkit-keyframes loader {
+    0% {
+        -webkit-transform: scale(1, 0.5);
+        opacity: .2;
+        filter: alpha(opacity=20)\9
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        opacity: 1;
+        filter: alpha(opacity=100)\9
+    }
+}
+
+@keyframes loader {
+    0% {
+        -webkit-transform: scale(1, 0.5);
+        transform: scale(1, 0.5);
+        opacity: .2;
+        filter: alpha(opacity=20)\9
+    }
+
+    100% {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+        filter: alpha(opacity=100)
+    }
+}
+
+
+
+#loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left:0;
+    top: 0;
+    background: rgba(0,0,0,0.9);
+}
+.loading-wrapper {
+    width: 300px;
+    /*height: 200px;*/
+    padding: 20px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    margin: 200px auto;
+    text-align: center;
+}
+
+#loading .spinner {
+    margin: 0 auto;
+    width: 150px;
+    text-align: center;
+}
+
+#loading .spinner > div {
+    width: 30px;
+    height: 30px;
+    background-color: #ff6700;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+    animation: bouncedelay 1.4s infinite ease-in-out;
+    /* Prevent first frame from flickering when animation starts */
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+#loading .spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+#loading .spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+#loading .success {
+    font-size: 20px;
+    color: #ff6700;
+}
+
+#loading i{
+    font-size: 30px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+#loading .success i{
+    font-size: 30px;
+}
+#loading .error{
+    font-size: 20px;
+    color: red;
+}
+#loading .error i {
+    color: red;
+}
+
+@-webkit-keyframes bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0.0) }
+    40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bouncedelay {
+    0%, 80%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 40% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+      }
+}
