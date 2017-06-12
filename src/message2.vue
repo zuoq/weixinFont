@@ -5,7 +5,7 @@
         <div class="middle">
             <div class="text clearfix">
                 <p class="text1">行为准则大讨论第二阶段活动之意见征集</p>
-                <p>请大家本着客观、公正的原则对市场和客服序列的工作提出宝贵的建议和意见，我们会如实反映给相应部门，相应部门也会对大家提出的意见给予回复，有则改之，无则加勉。同时，我们会组织全员参评，评出20条最有建设性的建议，每条给予200元的奖励。</p>
+                <p>请大家本着客观、公正的原则对<span>技术序列</span>的工作提出宝贵的建议和意见，我们会如实反映给相应部门，相应部门也会对大家提出的意见给予回复，有则改之，无则加勉。同时，我们会组织全员参评，评出20条最有建设性的建议，每条给予200元的奖励。</p>
             </div>
             <div class="department">
                 <div class="dmfl clearfix">
@@ -21,6 +21,7 @@
         <div class="message_text">
             <textarea v-model="message_text" placeholder="请输入您的意见"></textarea>
             <button type="submit" @click="goMes" class="seeAll">查看所有留言</button>
+            <button type="submit" @click="subMiS" class="msSub">密送提交</button>
             <button type="submit" @click="subMit">提交</button>
         </div>
 
@@ -29,28 +30,20 @@
 
 <script>
     export default {
-        name: 'message',
+        name: 'message2',
 
         data () {
             return {
                 message_text: '',
                 nickname : '',
                 info: '',
-                selected: "SCYX",
+                selected: "WLJS",
                 message_text:'',
                 bumen_text:'',
                 options: [
-                    { text: '市场营销部', value: 'SCYX' },
-                    { text: '集团客户事业部', value: 'JTKF' },
-                    { text: '电商部', value: 'DSBM' },
-                    { text: '稽核中心', value: 'JHZX' },
-                    { text: '客户服务部', value: 'KHFW' },
-                    { text: '城区业务区', value: 'CQYW' },
-                    { text: '北流业务区', value: 'BLYW' },
-                    { text: '博白业务区', value: 'BBYW' },
-                    { text: '陆川业务区', value: 'LCYW' },
-                    { text: '兴业业务区', value: 'XYYW' },
-                    { text: '容县业务区', value: 'RXYW' },
+                    { text: '网络建设部', value: 'WLJS' },
+                    { text: '运行维护部', value: 'YXWH' },
+                    { text: '网络优化中心', value: 'WLYH' }
                 ]
 
             }
@@ -60,7 +53,7 @@
 //            console.log(111);
 //            alert(111);
             var _self = this;
-            var res = this.$http.get('http://weixin.anumbrella.net/weixin.php');
+            var res = this.$http.get('http://weixin.anumbrella.net/weixin2.php');
 
 //            }
             res.then(function(data){
@@ -77,27 +70,17 @@
 
         methods: {
             goMes:function(){
-                this.$router.push('./show');
+                this.$router.push('./show2');
             },
 
-            getUrl: function GetQueryString(name)
-                {
-                    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-                    var r = window.location.search.substr(1).match(reg);
-                    if(r!=null)return  decodeURI(r[2]); return null;
-                },
+            getUrl: function(name)
+            {
+                var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if(r!=null)return  decodeURI(r[2]); return null;
+            },
             subMit: function() {
                 var _self = this;
-//                console.log(_self.message_text);
-//                console.log(_self.nickname);
-//                console.log(_self.selected);
-//                _self.$http.get('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8d5ec6bee8722643&redirect_uri=http://weixin.anumbrella.net/weixin.php&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect')
-//                    .then(function(res){
-//                        _self.nickname = res.nickname;
-//                    });
-
-
-//                _self.nickname = 'zdadad';
 
                 var resource = _self.$resource('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/save2');
                 this.modal.load();
@@ -113,7 +96,33 @@
                         _self.modal.error(data.info);
                     }else {
                         _self.modal.success('留言成功！！',function() {
-                            _self.$router.push('./show');
+                            _self.$router.push('./show2');
+                        })
+                    }
+                    // if(data.err == 200) {
+                    //     _self.info = data.info;
+                    //     alert(_self.info);
+                    // }
+                });
+            },
+            subMiS: function() {
+                var _self = this;
+
+                var resource = _self.$resource('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/savemis2');
+                this.modal.load();
+                resource.save({
+                    selected: _self.selected,
+                    message_text: _self.message_text,
+                    nickname: _self.nickname
+                }).then(function(res) {
+                    var data = res.data;
+                    _self.info = data.info;
+                    _self.message_text = "";
+                    if(data.err != 200) {
+                        _self.modal.error(data.info);
+                    }else {
+                        _self.modal.success('密送留言成功！！',function() {
+                            _self.$router.push('./show2');
                         })
                     }
                     // if(data.err == 200) {
@@ -160,6 +169,11 @@
         text-align: justify;
         color: #898869;
         padding-bottom: .2rem;
+
+        span {
+            font-weight: bold;
+            color: #ff2117;
+        }
     }
     .text1 {
         /*width: 80%;*/
@@ -170,13 +184,13 @@
         color: #ff2117;
     }
     /*.text2 {*/
-        /*width: 100%;*/
-        /*padding-bottom: .2rem;*/
-        /*text-align: right;*/
-        /*line-height: 80px;*/
-        /*font-size: 40px;*/
-        /*float: right;*/
-        /*color: #ff2117;*/
+    /*width: 100%;*/
+    /*padding-bottom: .2rem;*/
+    /*text-align: right;*/
+    /*line-height: 80px;*/
+    /*font-size: 40px;*/
+    /*float: right;*/
+    /*color: #ff2117;*/
     /*}*/
     .department {
         /*width: 94%;*/
@@ -185,19 +199,19 @@
         padding-top: .4rem;
 
         border-top: 2px solid #252112;
-        .dmfl  {
-            height: 2.4rem;
-            background-color: #fee3a0;
-            border: 2px solid #cbbe8f;
-            border-radius: 8px;
-        }
-        p {
-            line-height: .8rem;
-            padding-top: .3rem;
-            text-indent: .4rem;
-            font-size: 32px;
-            color: #e64e27;
-        }
+    .dmfl  {
+        height: 2.4rem;
+        background-color: #fee3a0;
+        border: 2px solid #cbbe8f;
+        border-radius: 8px;
+    }
+    p {
+        line-height: .8rem;
+        padding-top: .3rem;
+        text-indent: .4rem;
+        font-size: 32px;
+        color: #e64e27;
+    }
     }
     .department select {
         float: right;
@@ -212,37 +226,40 @@
         width: 86%;
         /*padding-top: .4rem;*/
         margin: 0 auto;
-        textarea {
-            width: 100%;
-            display: block;
-            height: 2.8rem;
-            margin: 0 auto;
-            padding: .2rem 0;
-            line-height: 50px;
-            font-size: 32px;
-            background-color: #fffde4;
-            border: 2px solid #b2b290;
-            border-radius: 8px;
-            text-indent: .4rem;
-        }
-        button {
-            float: right;
-            width: 2.4rem;
-            margin-top: .4rem;
-            background-color: #fee3a0;
-            line-height: 1rem;
-            font-size: 30px;
-            color: #fb5944;
-            text-align: center;
-            border: 2px solid #b2b290;
-            border-radius: 8px;
-        }
+    textarea {
+        width: 100%;
+        display: block;
+        height: 2.8rem;
+        margin: 0 auto;
+        padding: .2rem 0;
+        line-height: 50px;
+        font-size: 32px;
+        background-color: #fffde4;
+        border: 2px solid #b2b290;
+        border-radius: 8px;
+        text-indent: .4rem;
+    }
+    button {
+        float: right;
+        width: 2.2rem;
+        margin-top: .4rem;
+        background-color: #fee3a0;
+        line-height: 1rem;
+        font-size: 26px;
+        color: #fb5944;
+        text-align: center;
+        border: 2px solid #b2b290;
+        border-radius: 8px;
+    }
 
-        .seeAll {
-            float: left;
-            width: 3.4rem;
-        }
-        
+    .seeAll {
+        float: left;
+        width: 3rem;
+    }
+    .msSub {
+        margin-left: .2rem;
+    }
+
     }
     @media all and(max-width: 350px){
         .message_text {

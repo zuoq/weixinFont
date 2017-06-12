@@ -3,10 +3,15 @@ var webpack = require('webpack')
 
 module.exports = {
   entry: './src/main.js',
+  // output: {
+  //   path: path.resolve(__dirname, './dist'),
+  //   publicPath: '/dist/',
+  //   filename: 'build.js'
+  // },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    path: path.join(__dirname, './test'),
+    publicPath: './test/',
+    filename: 'test.js'
   },
   module: {
     rules: [

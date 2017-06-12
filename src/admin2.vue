@@ -2,8 +2,8 @@
     <div class="admin">
         <h1>留言管理页 <i @click="goto"></i></h1>
         <div class="show_tab clearfix">
-            <button class="is_show" v-bind:class="{active:isTabA}" @click="tab_A('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/hasshow')">已显示留言</button>
-            <button class="not_show" v-bind:class="{active:isTabB}" @click="tab_B('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/notshow')">未显示留言</button>
+            <button class="is_show" v-bind:class="{active:isTabA}" @click="tab_A('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/hasshow2')">已显示留言</button>
+            <button class="not_show" v-bind:class="{active:isTabB}" @click="tab_B('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/notshow2')">未显示留言</button>
         </div>
         <div class="show_message">
             <div v-for="(allMessages,index) in allMessage" class="message_box">
@@ -43,7 +43,7 @@
 //                _self.show_or_not = "显示该留言";
 //            }
             _self.notActive = !_self.isActive;
-            _self.sendAjax('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/getall');
+            _self.sendAjax('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/getall2');
         },
         methods: {
             tab_A: function(link) {
@@ -82,29 +82,12 @@
             showOrNot: function(id_key,index) {
                 var _self = this;
                 if(_self.isTabA == true) {
-                    _self.set_showOrNot('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/setnotshow',id_key,index);
+                    _self.set_showOrNot('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/setnotshow2',id_key,index);
                 }
                 if(_self.isTabB == true) {
-                    _self.set_showOrNot('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/setshow',id_key,index);
+                    _self.set_showOrNot('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/setshow2',id_key,index);
                 }
             },
-//            set_notshow:function(url,id_key) {
-//                var _self = this;
-//                var resource = _self.$resource(url);
-//                this.modal.load();
-//                resource.save({
-//                    id: id_key,
-//                }).then(function(res) {
-//                    var data = res.data;
-//                    if(data.err!=200) {
-//                        _self.modal.error(data.info);
-//                    }else{
-//                        _self.modal.success('留言已显示！',function() {
-//                            _self.allMessage.splice(delete_index,1);
-//                        });
-//                    }
-//                });
-//            },
 
             tab_show: function(link) {
                 var _self = this;
@@ -128,31 +111,23 @@
                 _self.notActive = !_self.isActive;
                 _self.$http.get(url).then(function(res) {
                     var data = res.data;
-    //                    console.log(data);
+                    //                    console.log(data);
                     for(var i=0;i<data.length;i++) {
-                        if(data[i].bumen=="SCYX") data[i].bumen = "市场营销部";
-                        if(data[i].bumen=="JTKF") data[i].bumen = "集团客户事业部";
-                        if(data[i].bumen=="DSBM") data[i].bumen = "电商部";
-                        if(data[i].bumen=="JHZX") data[i].bumen = "稽核中心";
-                        if(data[i].bumen=="KHFW") data[i].bumen = "客户服务部";
-                        if(data[i].bumen=="CQYW") data[i].bumen = "城区业务部";
-                        if(data[i].bumen=="BLYW") data[i].bumen = "北流业务部";
-                        if(data[i].bumen=="BBYW") data[i].bumen = "博白业务部";
-                        if(data[i].bumen=="LCYW") data[i].bumen = "陆川业务部";
-                        if(data[i].bumen=="XYYW") data[i].bumen = "兴业业务部";
-                        if(data[i].bumen=="RXYW") data[i].bumen = "容县业务部";
-                         _self.allMessage.push(data[i]);
+                        if(data[i].bumen=="WLJS") data[i].bumen = "网络建设部";
+                        if(data[i].bumen=="YXWH") data[i].bumen = "运行维护部";
+                        if(data[i].bumen=="WLYH") data[i].bumen = "网络优化中心";
+                        _self.allMessage.push(data[i]);
                     }
                 });
 //                console.log(_self.allMessage);
             },
 
             goto:function(){
-                this.$router.push('./search');
+                this.$router.push('./search2');
             },
             sendDelete: function(id_key,delete_index) {
                 var _self = this;
-                var resource = _self.$resource('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/delete');
+                var resource = _self.$resource('http://weixin.anumbrella.net/weixBd/weixinbackend/server.php/delete2');
                 this.modal.load();
                 resource.save({
                     id: id_key,
@@ -178,52 +153,52 @@
 </script>
 <style lang="scss">
     .admin {
-        h1 {
-            width: 100%;
-            line-height: 1.6rem;
-            background: #ffc710;
-            font-size: 40px;
-            text-align: center;
-             i {
-                 display: block;
-                 float: right;
-                 width: 1.2rem;
-                 height: 1.2rem;
-                 margin-top: .2rem;
-                 margin-right: .4rem;
-                 background: url("./assets/search.jpg");
-                 background-size: cover;
-             }
-        }
-        button {
-            width: 4rem;
-            margin-top: .2rem;
-            line-height: 1rem;
-            background: #c7c5a8;
-            font-size: 34px;
-            text-align: center;
-            color: #fff;
-            border-radius: 16px;
-        }
-        .active {
-            background: #F2753F;
-        }
-        .is_show {
-            float: left;
-            margin-left: .5rem;
-        }
-        .not_show {
-            float: right;
-            margin-right: .5rem;
-        }
-        .delete,
-        .show_or_not {
-            width: 3rem;
-            line-height: .8rem;
-            font-size: 30px;
-            margin-left: .8rem;
-            margin-top: .2rem;
-        }
+    h1 {
+        width: 100%;
+        line-height: 1.6rem;
+        background: #ffc710;
+        font-size: 40px;
+        text-align: center;
+    i {
+        display: block;
+        float: right;
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-top: .2rem;
+        margin-right: .4rem;
+        background: url("./assets/search.jpg");
+        background-size: cover;
+    }
+    }
+    button {
+        width: 4rem;
+        margin-top: .2rem;
+        line-height: 1rem;
+        background: #c7c5a8;
+        font-size: 34px;
+        text-align: center;
+        color: #fff;
+        border-radius: 16px;
+    }
+    .active {
+        background: #F2753F;
+    }
+    .is_show {
+        float: left;
+        margin-left: .5rem;
+    }
+    .not_show {
+        float: right;
+        margin-right: .5rem;
+    }
+    .delete,
+    .show_or_not {
+        width: 3rem;
+        line-height: .8rem;
+        font-size: 30px;
+        margin-left: .8rem;
+        margin-top: .2rem;
+    }
 
     }
 
